@@ -1,0 +1,11 @@
+/* @import "@fontsource/poppins"; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* app.css */
+
+/* body {
+    font-family: "Poppins", sans-serif;
+} */
