@@ -25,15 +25,4 @@ $(document).ready(function () {
             $this.attr("aria-expanded", "false");
         }
     });
-
-    // // Handle resize
-    // $(window).on("resize", function () {
-    //     if ($(window).width() >= 768) {
-    //         // md breakpoint
-    //         $("#mobile-menu").addClass("hidden");
-    //         $("#mobile-menu-toggle").attr("aria-expanded", "false");
-    //         $(".menu-icon-open").show();
-    //         $(".menu-icon-close").hide();
-    //     }
-    // });
 });

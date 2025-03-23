@@ -26,7 +26,7 @@
     <nav class="bg-gray-800">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center">
-          <div class="flex items-center w-full justify-between">
+          <div class="flex items-center flex-1">
             <div class="shrink-0">
               <h6 class="text-xs font-bold text-white">
                 <a href="/" class="text-white text-2xl font-bold">{{ '<Jobsity />' }}</a>
@@ -36,8 +36,28 @@
               <div class="ml-10 flex items-baseline space-x-4">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <x-nav-link href="/" :active="request()->is('/')">Home</x-nav-link>
-                <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
-                <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                @auth
+
+                  <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+                  <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
+                @endauth
+
+              </div>
+            </div>
+            <div class="hidden md:block ml-auto">
+              <div class="flex items-baseline spaxe-x-4">
+                @guest
+                  <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                  <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                @endguest
+
+                @auth
+                  <x-nav-link href="/profile" :active="request()->is('profile')">Profile</x-nav-link>
+                  <form method="POST" action="/logout">
+                    @csrf
+                    <x-form-button>Logout</x-form-button>
+                  </form>
+                @endauth
               </div>
             </div>
           </div>
@@ -65,11 +85,19 @@
 
       <!-- Mobile menu, show/hide based on menu state. -->
       <div class="md:hidden hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+        <div class="space-y-2 px-2 pt-2 pb-3 sm:px-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <x-nav-link href="/">Home</x-nav-link>
           <x-nav-link href="/about">About</x-nav-link>
           <x-nav-link href="/contact" :active="true">Contact</x-nav-link>
+          @guest
+            <div class="border-t border-gray-700 pt-2 mt-2">
+
+              <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+              <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+
+            </div>
+          @endguest
         </div>
       </div>
     </nav>
