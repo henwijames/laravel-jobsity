@@ -1,5 +1,4 @@
 import "./bootstrap";
-import "../css/app.css"; // Ensure CSS is still imported
 
 import $ from "jquery";
 window.$ = window.jQuery = $;

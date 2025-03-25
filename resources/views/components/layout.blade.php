@@ -47,16 +47,21 @@
             <div class="hidden md:block ml-auto">
               <div class="flex items-baseline spaxe-x-4">
                 @guest
-                  <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
-                  <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                  <div class="flex items-center gap-2">
+                    <x-nav-link href="/login" :active="request()->is('login')">Login</x-nav-link>
+                    <x-nav-link href="/register" :active="request()->is('register')">Register</x-nav-link>
+                  </div>
                 @endguest
 
                 @auth
-                  <x-nav-link href="/profile" :active="request()->is('profile')">Profile</x-nav-link>
-                  <form method="POST" action="/logout">
-                    @csrf
-                    <x-form-button>Logout</x-form-button>
-                  </form>
+                  <div class="flex items-center gap-2">
+
+                    <x-nav-link href="/profile" :active="request()->is('profile')">Profile</x-nav-link>
+                    <form method="POST" action="/logout">
+                      @csrf
+                      <x-form-button>Logout</x-form-button>
+                    </form>
+                  </div>
                 @endauth
               </div>
             </div>
@@ -107,6 +112,8 @@
         <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ $heading }}</h1>
         @if (request()->is('jobs'))
           <x-button href="/jobs/create">Create Job</x-button>
+        @elseif(request()->is('jobs/*'))
+          <x-button href="/jobs">Back</x-button>
         @endif
       </div>
     </header>
